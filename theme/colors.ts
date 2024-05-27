@@ -1,71 +1,76 @@
-import { Platform } from 'react-native';
+const Colors = {
+  transparent: 'transparent',
+  current: 'currentColor',
+  white: '#ffffff',
+  inputPlaceholder: '#A8A8A8',
+  inputLabel: '#525252',
+  textColor: '#202223',
+  textCheckboxColor: '#161616',
+  screenColor: '#FCFCFC',
+  screenColorSecondary: '#FFFDFD',
+  iconColor: '#292D32',
+  darkShade1: '#282828',
 
-const IOS_SYSTEM_COLORS = {
-  white: 'rgb(255, 255, 255)',
-  black: 'rgb(0, 0, 0)',
-  light: {
-    grey6: 'rgb(242, 242, 247)',
-    grey5: 'rgb(230, 230, 235)',
-    grey4: 'rgb(210, 210, 215)',
-    grey3: 'rgb(199, 199, 204)',
-    grey2: 'rgb(175, 176, 180)',
-    grey: 'rgb(142, 142, 147)',
-    background: 'rgb(242, 242, 247)',
-    foreground: 'rgb(0, 0, 0)',
-    root: 'rgb(255, 255, 255)',
-    card: 'rgb(255, 255, 255)',
-    destructive: 'rgb(255, 56, 43)',
-    primary: 'rgb(0, 123, 254)',
+  neutral: {
+    DEFAULT: '#DEEAFE',
   },
-  dark: {
-    grey6: 'rgb(21, 21, 24)',
-    grey5: 'rgb(40, 40, 42)',
-    grey4: 'rgb(55, 55, 57)',
-    grey3: 'rgb(70, 70, 73)',
-    grey2: 'rgb(99, 99, 102)',
-    grey: 'rgb(142, 142, 147)',
-    background: 'rgb(0, 0, 0)',
-    foreground: 'rgb(255, 255, 255)',
-    root: 'rgb(0, 0, 0)',
-    card: 'rgb(28, 28, 30)',
-    destructive: 'rgb(254, 67, 54)',
-    primary: 'rgb(3, 133, 255)',
-  },
-} as const;
 
-const ANDROID_COLORS = {
-  white: 'rgb(255, 255, 255)',
-  black: 'rgb(0, 0, 0)',
-  light: {
-    grey6: 'rgb(249, 249, 255)',
-    grey5: 'rgb(215, 217, 228)',
-    grey4: 'rgb(193, 198, 215)',
-    grey3: 'rgb(113, 119, 134)',
-    grey2: 'rgb(65, 71, 84)',
-    grey: 'rgb(24, 28, 35)',
-    background: 'rgb(249, 249, 255)',
-    foreground: 'rgb(0, 0, 0)',
-    root: 'rgb(255, 255, 255)',
-    card: 'rgb(255, 255, 255)',
-    destructive: 'rgb(186, 26, 26)',
-    primary: 'rgb(0, 112, 233)',
+  brown: {
+    DEFAULT: '#A8A4A4',
   },
-  dark: {
-    grey6: 'rgb(16, 19, 27)',
-    grey5: 'rgb(39, 42, 50)',
-    grey4: 'rgb(49, 53, 61)',
-    grey3: 'rgb(54, 57, 66)',
-    grey2: 'rgb(139, 144, 160)',
-    grey: 'rgb(193, 198, 215)',
-    background: 'rgb(0, 0, 0)',
-    foreground: 'rgb(255, 255, 255)',
-    root: 'rgb(0, 0, 0)',
-    card: 'rgb(16, 19, 27)',
-    destructive: 'rgb(147, 0, 10)',
-    primary: 'rgb(3, 133, 255)',
+
+  primary: {
+    DEFAULT: '#1f036e',
   },
-} as const;
 
-const COLORS = Platform.OS === 'ios' ? IOS_SYSTEM_COLORS : ANDROID_COLORS;
+  secondary: {
+    DEFAULT: '#066DB1',
+  },
 
-export { COLORS };
+  black: {
+    DEFAULT: '#25282B',
+    25: '#F5F5F5',
+    50: '#E8E8E8',
+    100: '#DBDDE0',
+    200: '#CACCCF',
+    300: '#A0A4A8',
+    400: '#52575C',
+    500: '#25282B',
+    600: '#0B0B0C',
+  },
+
+  warning: {
+    25: '#FFFAF1',
+    50: '#FFEFD3',
+    100: '#FEE5B5',
+    200: '#FED790',
+    300: '#FECA6C',
+    400: '#FDBD47',
+    500: '#FDB022',
+    600: '#D3931C',
+  },
+
+  error: {
+    25: '#FFEAEA',
+    50: '#FCA5A5',
+    100: '#F87171',
+    200: '#EF4444',
+    300: '#DC2626',
+    400: '#B91C1C',
+    500: '#991B1B',
+    600: '#7F1D1D',
+  },
+
+  success: {
+    25: '#E4FFE9',
+    50: '#5CEBB4',
+    100: '#16B679',
+    200: '#107F55',
+    300: '#0D6D48',
+    400: '#0B5B3C',
+    500: '#094930',
+    600: '#073624',
+  },
+};
+
+export default Colors;

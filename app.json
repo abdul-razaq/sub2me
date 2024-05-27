@@ -3,7 +3,6 @@
     "name": "Sub2Me",
     "slug": "Sub2Me",
     "version": "1.0.0",
-
     "scheme": "Sub2Me",
     "web": {
       "bundler": "metro",
@@ -21,19 +20,15 @@
     ],
     "experiments": {
       "typedRoutes": true,
-
       "tsconfigPaths": true
     },
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "automatic",
-
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/sub2me-white.png",
+      "resizeMode": "native",
+      "backgroundColor": "#1f036e"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -43,6 +38,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.nivanshotchkiss.Sub2Me"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "fa30741a-1f00-4ae7-b0d9-3c4951a7847a"
       }
     }
   }
