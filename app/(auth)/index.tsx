@@ -48,23 +48,7 @@ export default function AuthIndex() {
             router.push('/register');
           }}
         />
-        <View className="flex-row justify-center gap-2">
-          <AppTextBody
-            text="Have an existing account?"
-            style={{
-              marginTop: sv(18),
-              fontFamily: FontFamily['Satoshi-Medium'],
-              fontSize: f(convertFontValueToNumber(fontSize['base'])),
-            }}
-          />
-          <TextButton
-            title="Log In"
-            onPress={() => {
-              router.push('/login');
-            }}
-            titleColor={Colors.primary.DEFAULT}
-          />
-        </View>
+        <LoginSuggestion />
       </View>
     </View>
   );
@@ -106,5 +90,29 @@ function CheckBox({
         />
       )}
     </Pressable>
+  );
+}
+
+export function LoginSuggestion() {
+  const router = useRouter();
+
+  return (
+    <View className="flex-row justify-center gap-2">
+      <AppTextBody
+        text="Have an existing account?"
+        style={{
+          marginTop: sv(18),
+          fontFamily: FontFamily['Satoshi-Medium'],
+          fontSize: f(convertFontValueToNumber(fontSize['base'])),
+        }}
+      />
+      <TextButton
+        title="Log In"
+        onPress={() => {
+          router.push('/login');
+        }}
+        titleColor={Colors.primary.DEFAULT}
+      />
+    </View>
   );
 }
