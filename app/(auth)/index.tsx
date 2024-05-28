@@ -93,7 +93,7 @@ function CheckBox({
   );
 }
 
-export function LoginSuggestion({ mode = 'login' }: { mode: 'register' | 'login' }) {
+export function LoginSuggestion({ mode = 'login' }: { mode?: 'register' | 'login' }) {
   const router = useRouter();
 
   return (
