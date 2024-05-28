@@ -17,7 +17,9 @@ export default function ConfirmPin() {
     return value.length === 6 && pin === value;
   }
 
-  function handleCreatePin(pin: string) {}
+  function handleCreatePin(pin: string) {
+    Keyboard.dismiss();
+  }
 
   function handleSignUp() {
     console.log(pin);

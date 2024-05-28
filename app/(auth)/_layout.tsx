@@ -20,7 +20,10 @@ export default function AuthStack() {
       }}>
       <Stack.Screen name="index" options={{ headerLeft: undefined }} />
       <Stack.Screen name="register" />
-      <Stack.Screen name="login" />
+      <Stack.Screen
+        name="login"
+        options={{ headerStyle: { backgroundColor: Colors.primary.DEFAULT } }}
+      />
       <Stack.Screen name="create-password" />
       <Stack.Screen name="create-pin" />
       <Stack.Screen name="confirm-pin" />

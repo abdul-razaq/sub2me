@@ -93,13 +93,13 @@ function CheckBox({
   );
 }
 
-export function LoginSuggestion() {
+export function LoginSuggestion({ mode = 'login' }: { mode: 'register' | 'login' }) {
   const router = useRouter();
 
   return (
     <View className="flex-row justify-center gap-2">
       <AppTextBody
-        text="Have an existing account?"
+        text={`${mode === 'register' ? 'Have an existing account?' : "Don't have an account?"}`}
         style={{
           marginTop: sv(18),
           fontFamily: FontFamily['Satoshi-Medium'],
@@ -107,9 +107,9 @@ export function LoginSuggestion() {
         }}
       />
       <TextButton
-        title="Log In"
+        title={`${mode === 'register' ? 'Sign Up' : 'Log In'}`}
         onPress={() => {
-          router.push('/login');
+          mode === 'login' ? router.push('/login') : router.push('/register');
         }}
         titleColor={Colors.primary.DEFAULT}
       />
