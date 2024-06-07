@@ -91,7 +91,13 @@ export default function Login() {
               <AppButton
                 variant="primary"
                 title="Login"
-                onPress={!email && !password ? null : () => {}}
+                onPress={
+                  !email && !password
+                    ? null
+                    : () => {
+                        router.replace('/(home)');
+                      }
+                }
               />
               <LoginSuggestion mode="register" />
             </View>
