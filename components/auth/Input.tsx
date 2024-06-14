@@ -30,11 +30,11 @@ export default function Input({ hintText, errorMessage, inputProps }: InputProps
             paddingHorizontal: 16,
             borderColor:
               isFocused && !errorMessage
-                ? Colors.primary[200]
+                ? '#710193'
                 : errorMessage
                   ? Colors.error[300]
                   : Colors.black[50],
-            borderWidth: errorMessage || isFocused ? 2 : 1,
+            borderWidth: errorMessage || isFocused ? 1.5 : 1,
             borderRadius: 5,
             color: Colors.black.DEFAULT,
             fontFamily: FontFamily['Satoshi-Medium'],
@@ -53,9 +53,9 @@ export default function Input({ hintText, errorMessage, inputProps }: InputProps
           setIsFocused(false);
         }}
       />
-      {hintText && <Text className="font-Satoshi-Medium text-black my-2">{hintText}</Text>}
+      {hintText && <Text className="my-2 font-Satoshi-Medium text-black">{hintText}</Text>}
       {errorMessage && (
-        <Text className="font-Satoshi-Medium text-error-300 mt-2">{errorMessage}</Text>
+        <Text className="mt-2 font-Satoshi-Medium text-error-300">{errorMessage}</Text>
       )}
     </View>
   );

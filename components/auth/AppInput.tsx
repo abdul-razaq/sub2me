@@ -47,7 +47,7 @@ export default function AppInput({
 
   return (
     <View>
-      <Text className="text-md text-inputLabel font-Satoshi-Medium mb-2 leading-normal tracking-normal">
+      <Text className="mb-2 font-Satoshi-Medium text-md leading-normal tracking-normal text-inputLabel">
         {label}
       </Text>
       <View className="w-full">

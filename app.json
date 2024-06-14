@@ -16,6 +16,12 @@
         {
           "launchModeExperimental": "most-recent"
         }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts."
+        }
       ]
     ],
     "experiments": {
@@ -30,9 +36,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1f036e"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nivanshotchkiss.Sub2Me"

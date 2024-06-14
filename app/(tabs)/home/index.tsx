@@ -1,16 +1,5 @@
-import { View, Text, StatusBar, Image, Pressable } from 'react-native';
-import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  fontPixel,
-  heightPixel,
-  pixelSizeHorizontal as sh,
-  pixelSizeVertical as sv,
-  widthPixel,
-} from '@/theme/layout';
-import Colors from '@/theme/colors';
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import {
   Call,
   Data,
@@ -21,52 +10,67 @@ import {
   Sms,
   Zoom,
 } from 'iconsax-react-native';
+import React from 'react';
+import { View, Text, StatusBar, Image, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const navIcons = [
-  {
-    title: 'Airtime',
-    icon: <Call size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Data',
-    icon: <Global size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Cable TV',
-    icon: <Zoom size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Electricity',
-    icon: <Electricity size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Exam Pin',
-    icon: <Ranking size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Data Pin',
-    icon: <Data size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Airtime Swap',
-    icon: <MoneyChange size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-  {
-    title: 'Bulk Sms',
-    icon: <Sms size="24" color={Colors.primary.DEFAULT} />,
-    onPress: () => router.push('/'),
-  },
-];
+import Colors from '@/theme/colors';
+import {
+  fontPixel,
+  heightPixel,
+  pixelSizeHorizontal as sh,
+  pixelSizeVertical as sv,
+  widthPixel,
+} from '@/theme/layout';
 
 export default function HomeIndex() {
   const router = useRouter();
+
+  const navIcons = React.useMemo(
+    () => [
+      {
+        title: 'Airtime',
+        icon: <Call size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/(airtime)'),
+      },
+      {
+        title: 'Data',
+        icon: <Global size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Cable TV',
+        icon: <Zoom size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Electricity',
+        icon: <Electricity size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Exam Pin',
+        icon: <Ranking size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Data Pin',
+        icon: <Data size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Airtime Swap',
+        icon: <MoneyChange size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+      {
+        title: 'Bulk Sms',
+        icon: <Sms size="24" color={Colors.primary.DEFAULT} />,
+        onPress: () => router.push('/'),
+      },
+    ],
+    [router]
+  );
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar backgroundColor={Colors.primary.DEFAULT} />
@@ -163,7 +167,7 @@ function IconButton({
   onPress: () => void;
 }) {
   return (
-    <Pressable className="items-center gap-3" style={{}}>
+    <Pressable className="items-center gap-3" style={{}} onPress={onPress}>
       <View
         className="rounded-full bg-purple-100 shadow-sm shadow-purple-400"
         style={{ padding: sv(20) }}>
