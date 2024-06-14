@@ -1,32 +1,34 @@
 import { FontAwesome6, MaterialIcons } from '@expo/vector-icons';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as Contacts from 'expo-contacts';
 import { useRouter } from 'expo-router';
 import { InfoCircle } from 'iconsax-react-native';
 import React from 'react';
 import { View, Image, Text, Pressable, Keyboard } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Modal from 'react-native-modal';
 
 import AppInput from '@/components/auth/AppInput';
+import OTPInput from '@/components/auth/OTPInput';
+import BottomSheet from '@/components/common/BottomSheet';
 import AppButton from '@/components/common/Button/AppButton';
 import CustomDropdown from '@/components/common/CustomDropdown';
+import Divider from '@/components/common/Divider';
 import ListTile from '@/components/common/ListTile';
 import AppTitle from '@/components/common/Typography/AppTitle';
 import Colors from '@/theme/colors';
 import { pixelSizeVertical } from '@/theme/layout';
-import BottomSheet from '@/components/common/BottomSheet';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import OTPInput from '@/components/auth/OTPInput';
-import Divider from '@/components/common/Divider';
-import { ScrollView } from 'react-native-gesture-handler';
 
-export default function AirtimeIndex() {
+export default function AirtimePinIndex() {
   const [selectedContact, setSelectedContact] = React.useState<Contacts.Contact>();
   const data = React.useMemo(() => [{ label: 'VTU', value: '1' }], []);
+  const [iucNumber, setIUCNumber] = React.useState('');
 
   const [isModalVisible, setModalVisible] = React.useState(false);
-  const [amount, setAmount] = React.useState();
+  const [pin, setPin] = React.useState('');
   const [value, setValue] = React.useState('');
+  const [narration, setNarration] = React.useState('');
 
   function handleCreatePin(pin: string) {
     Keyboard.dismiss();
@@ -81,27 +83,29 @@ export default function AirtimeIndex() {
           </View>
           <AppTitle text="Successful" style={{ paddingVertical: pixelSizeVertical(20) }} />
           <ListTile
-            title="Network: "
+            title="Biller: "
             withArrow={false}
             additionalNode={
               <View>
                 <Image />
-                <Text className="font-Satoshi-Bold text-md text-warning-300">MTN</Text>
+                <Text className="font-Satoshi-Bold text-md text-blue-500">MTN</Text>
               </View>
             }
           />
           <ListTile
             title="Amount: "
             withArrow={false}
-            additionalNode={<Text className="font-Satoshi-Bold text-md text-primary">$430</Text>}
+            additionalNode={<Text className="font-Satoshi-Bold text-md text-primary">$1000</Text>}
           />
           <ListTile
-            title="Airtime Type: "
+            title="Product Type: "
             withArrow={false}
-            additionalNode={<Text className="font-Satoshi-Bold text-md text-black-400">VTU</Text>}
+            additionalNode={
+              <Text className="font-Satoshi-Bold text-md text-black-400">Airtime Pin</Text>
+            }
           />
           <ListTile
-            title="Number: "
+            title="Phone Number: "
             withArrow={false}
             additionalNode={
               <Text className="font-Satoshi-Bold text-md tracking-wide text-black-400">
@@ -122,7 +126,7 @@ export default function AirtimeIndex() {
             }
           />
           <ListTile
-            title="Number: "
+            title="Date: "
             withArrow={false}
             additionalNode={
               <Text className="font-Satoshi-Bold text-md tracking-wide text-black-400">
@@ -170,27 +174,24 @@ export default function AirtimeIndex() {
               style={{ paddingVertical: pixelSizeVertical(20) }}
             />
             <ListTile
-              title="Network: "
+              title="Biller: "
               withArrow={false}
-              additionalNode={
-                <View>
-                  <Image />
-                  <Text className="font-Satoshi-Bold text-md text-warning-300">MTN</Text>
-                </View>
-              }
+              additionalNode={<Text className="font-Satoshi-Bold text-md text-blue-500">MTN</Text>}
             />
             <ListTile
               title="Amount: "
               withArrow={false}
-              additionalNode={<Text className="font-Satoshi-Bold text-md text-primary">$430</Text>}
+              additionalNode={<Text className="font-Satoshi-Bold text-md text-primary">$1000</Text>}
             />
             <ListTile
-              title="Airtime Type: "
+              title="Product Type: "
               withArrow={false}
-              additionalNode={<Text className="font-Satoshi-Bold text-md text-black-400">VTU</Text>}
+              additionalNode={
+                <Text className="font-Satoshi-Bold text-md text-black-400">Airtime Pin</Text>
+              }
             />
             <ListTile
-              title="Number: "
+              title="Phone Number: "
               withArrow={false}
               additionalNode={
                 <Text className="font-Satoshi-Bold text-md tracking-wide text-black-400">
@@ -212,17 +213,22 @@ export default function AirtimeIndex() {
             </View>
           </View>
         </Modal>
-        <View
-          className="flex-row justify-center gap-4"
-          style={{ paddingTop: pixelSizeVertical(30) }}>
-          <AirtimeCard />
-          <AirtimeCard selectedNetwork="airtel" />
-          <AirtimeCard selectedNetwork="glo" />
-          <AirtimeCard selectedNetwork="9mobile" />
-        </View>
+
         <View
           style={{ padding: pixelSizeVertical(16), paddingTop: pixelSizeVertical(40) }}
           className="gap-4">
+          <CustomDropdown
+            data={[
+              { label: 'MTN', value: '1' },
+              { label: 'AIRTEL', value: '2' },
+              { label: 'GLO', value: '3' },
+              { label: '9Mobile', value: '4' },
+              { label: 'IPNX', value: '5' },
+            ]}
+            label="Biller"
+            onValueChanged={() => {}}
+          />
+
           <View className="gap-4">
             <AppInput
               placeholder="Enter Number"
@@ -233,84 +239,32 @@ export default function AirtimeIndex() {
               <FontAwesome6 name="contact-book" size={24} color={Colors.black[400]} />
             </Pressable>
           </View>
-          <CustomDropdown data={data} label="Airtime Type" onValueChanged={() => {}} />
-
-          <View
-            className="flex-row items-center gap-2"
-            style={{ paddingVertical: pixelSizeVertical(10) }}>
-            <Text className="font-Satoshi-Medium text-black-400">Network Identification: </Text>
-            <View className="flex-row items-center gap-1">
-              <Text className="font-Satoshi-Medium text-success-200">Verified</Text>
-              <MaterialIcons name="verified-user" size={18} color={Colors.success[200]} />
-            </View>
-          </View>
 
           <AppInput
-            placeholder="Enter amount (e.g 1000)"
-            label="Amount"
+            placeholder="Enter pin (e.g 4312 5452 3456 2321)"
+            label="Recharge Pin"
             keyboardType="number-pad"
-            additionalProps={{ value: amount, onChangeText: setAmount }}
+            additionalProps={{ value: pin, onChangeText: setPin }}
+          />
+
+          <AppInput
+            placeholder="Enter Narration"
+            label="Enter Narration..."
+            additionalProps={{ editable: true, value: narration, onChangeText: setNarration }}
           />
           <View
             className="flex-row items-center gap-2"
             style={{ paddingVertical: pixelSizeVertical(10) }}>
             <Text className="font-Satoshi-Medium capitalize text-black-400">Amount to pay:</Text>
             <View className="flex-row items-center gap-1">
-              <Text className="font-Satoshi-Bold text-lg text-primary">$430</Text>
+              <Text className="font-Satoshi-Bold text-lg text-primary">$1000</Text>
             </View>
-          </View>
-          <View
-            className="items-center rounded-lg bg-[#f9e2ff]"
-            style={{ padding: pixelSizeVertical(15) }}>
-            <Text className="text-center font-Satoshi-Bold text-md text-primary">
-              20% Off when you purchase a VTU airtime from us!!!
-            </Text>
           </View>
         </View>
         <View style={{ padding: pixelSizeVertical(20), paddingBottom: pixelSizeVertical(40) }}>
-          <AppButton
-            onPress={
-              selectedContact && amount && typeof parseInt(amount, 10) === 'number'
-                ? toggleModal
-                : null
-            }
-            variant="primary"
-            title="Proceed"
-          />
+          <AppButton onPress={toggleModal} variant="primary" title="Buy" />
         </View>
       </KeyboardAwareScrollView>
     </>
-  );
-}
-
-function AirtimeCard({
-  selectedNetwork = 'mtn',
-}: {
-  selectedNetwork?: 'mtn' | 'airtel' | 'glo' | '9mobile';
-}) {
-  const image =
-    selectedNetwork === 'mtn'
-      ? require('@/assets/images/mtn.jpg')
-      : selectedNetwork === 'airtel'
-        ? require('@/assets/images/airtel.jpg')
-        : selectedNetwork === 'glo'
-          ? require('@/assets/images/glo2.jpg')
-          : require('@/assets/images/9mobile.png');
-
-  return (
-    <Pressable
-      className={`items-center rounded-lg border ${selectedNetwork === 'mtn' ? 'border-warning-300 bg-warning-50' : selectedNetwork === 'airtel' ? 'border-error-300 bg-error-50' : selectedNetwork === 'glo' ? 'border-success-200 bg-success-100' : 'border-success-900 bg-success-200'}`}
-      style={{ padding: pixelSizeVertical(15) }}>
-      <Image
-        source={image}
-        style={{ height: 45, width: 45, borderRadius: 50, overflow: 'hidden' }}
-        resizeMode="cover"
-      />
-      <Text
-        className={`text-center font-Satoshi-Bold text-sm uppercase ${selectedNetwork === 'mtn' ? 'text-warning-300' : selectedNetwork === 'airtel' ? 'text-error-300' : selectedNetwork === 'glo' ? 'text-white' : 'text-white'}`}
-        style={{ paddingTop: pixelSizeVertical(10) }}>
-        {selectedNetwork}
-      </Text>
-    </Pressable>
   );
 }

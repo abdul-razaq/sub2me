@@ -6,6 +6,7 @@ import { Slot, SplashScreen } from 'expo-router';
 import React from 'react';
 import { Image } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -54,7 +55,9 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <InitialLayout />
+      <BottomSheetModalProvider>
+        <InitialLayout />
+      </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );
 }

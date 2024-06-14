@@ -11,7 +11,9 @@ const OTPInput = React.forwardRef<any, any>(function OTPInput(props, ref) {
   const {
     onChangeText,
     onCompleted,
+    numberOfDigits = 6,
   }: {
+    numberOfDigits?: number;
     onChangeText?: (v: string) => void;
     onCompleted?: (v: string) => void;
   } = props;
@@ -19,7 +21,7 @@ const OTPInput = React.forwardRef<any, any>(function OTPInput(props, ref) {
     <View>
       <OtpInput
         ref={ref}
-        numberOfDigits={6}
+        numberOfDigits={numberOfDigits}
         focusColor={Colors.primary.DEFAULT}
         focusStickBlinkingDuration={500}
         onTextChange={onChangeText}

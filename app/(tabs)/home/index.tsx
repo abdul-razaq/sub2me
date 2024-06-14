@@ -1,4 +1,5 @@
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Contacts from 'expo-contacts';
 import { useRouter } from 'expo-router';
 import {
   Call,
@@ -26,6 +27,17 @@ import {
 export default function HomeIndex() {
   const router = useRouter();
 
+  React.useEffect(() => {
+    (async () => {
+      let response;
+      const { status } = await Contacts.requestPermissionsAsync();
+      response = status;
+      if (response !== 'granted') {
+        response = await Contacts.requestPermissionsAsync();
+      }
+    })();
+  }, []);
+
   const navIcons = React.useMemo(
     () => [
       {
@@ -36,27 +48,27 @@ export default function HomeIndex() {
       {
         title: 'Data',
         icon: <Global size="24" color={Colors.primary.DEFAULT} />,
-        onPress: () => router.push('/'),
+        onPress: () => router.push('/(data)'),
       },
       {
         title: 'Cable TV',
         icon: <Zoom size="24" color={Colors.primary.DEFAULT} />,
-        onPress: () => router.push('/'),
+        onPress: () => router.push('/(cable)'),
       },
       {
         title: 'Electricity',
         icon: <Electricity size="24" color={Colors.primary.DEFAULT} />,
-        onPress: () => router.push('/'),
+        onPress: () => router.push('/(electricity)'),
       },
       {
         title: 'Exam Pin',
         icon: <Ranking size="24" color={Colors.primary.DEFAULT} />,
-        onPress: () => router.push('/'),
+        onPress: () => router.push('/(exam_pin)'),
       },
       {
-        title: 'Data Pin',
+        title: 'Airtime Pin',
         icon: <Data size="24" color={Colors.primary.DEFAULT} />,
-        onPress: () => router.push('/'),
+        onPress: () => router.push('/(airtime_pin)'),
       },
       {
         title: 'Airtime Swap',
@@ -71,6 +83,7 @@ export default function HomeIndex() {
     ],
     [router]
   );
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar backgroundColor={Colors.primary.DEFAULT} />
